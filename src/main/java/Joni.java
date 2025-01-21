@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Joni {
     private static final int MAX_TASKS = 100;
-    private static String[] tasks = new String[MAX_TASKS];
+    private static Task[] tasks = new Task[MAX_TASKS];
     private static int taskCount = 0;
 
     public static void main(String[] args) {
@@ -38,6 +38,10 @@ public class Joni {
                 break;
             } else if (input.equalsIgnoreCase("list")) {
                 printTaskList();
+            } else if (input.startsWith("mark ")) {
+                markTaskAsDone(input);
+            } else if (input.startsWith("unmark ")) {
+                unmarkTask(input);
             } else {
                 addTask(input);
             }
@@ -45,12 +49,12 @@ public class Joni {
         sc.close();
     }
 
-    private static void addTask(String task) {
+    private static void addTask(String taskDescription) {
         if (taskCount < MAX_TASKS) {
-            tasks[taskCount] = task;
+            tasks[taskCount] = new Task(taskDescription);
             taskCount++;
             System.out.println("____________________________________________________________");
-            System.out.println(" added: " + task);
+            System.out.println(" added: " + taskDescription);
             System.out.println("____________________________________________________________");
         } else {
             System.out.println("____________________________________________________________");
@@ -64,10 +68,53 @@ public class Joni {
         if (taskCount == 0) {
             System.out.println(" No tasks added yet.");
         } else {
+            System.out.println(" Here are the tasks in your list:");
             for (int i = 0; i < taskCount; i++) {
-                System.out.println(" " + (i + 1) + ". " + tasks[i]);
+                System.out.println(" " + (i + 1) + "." + tasks[i]);
             }
         }
         System.out.println("____________________________________________________________");
+    }
+
+    private static void markTaskAsDone(String input) {
+        try {
+            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            if (index >= 0 && index < taskCount) {
+                tasks[index].markAsDone();
+                System.out.println("____________________________________________________________");
+                System.out.println(" Nice! I've marked this task as done:");
+                System.out.println("   " + tasks[index]);
+                System.out.println("____________________________________________________________");
+            } else {
+                System.out.println("____________________________________________________________");
+                System.out.println(" Invalid task number!");
+                System.out.println("____________________________________________________________");
+            }
+        } catch (Exception e) {
+            System.out.println("____________________________________________________________");
+            System.out.println(" Please enter a valid task number.");
+            System.out.println("____________________________________________________________");
+        }
+    }
+
+    private static void unmarkTask(String input) {
+        try {
+            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            if (index >= 0 && index < taskCount) {
+                tasks[index].markAsNotDone();
+                System.out.println("____________________________________________________________");
+                System.out.println(" OK, I've marked this task as not done yet:");
+                System.out.println("   " + tasks[index]);
+                System.out.println("____________________________________________________________");
+            } else {
+                System.out.println("____________________________________________________________");
+                System.out.println(" Invalid task number!");
+                System.out.println("____________________________________________________________");
+            }
+        } catch (Exception e) {
+            System.out.println("____________________________________________________________");
+            System.out.println(" Please enter a valid task number.");
+            System.out.println("____________________________________________________________");
+        }
     }
 }
