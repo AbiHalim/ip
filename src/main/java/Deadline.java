@@ -1,8 +1,8 @@
-public class Deadline extends Task {
+class Deadline extends Task {
     protected String by;
 
     public Deadline(String description, String by) {
-        super(description);
+        super(description, TaskType.DEADLINE);
         this.by = by;
     }
 

@@ -1,7 +1,23 @@
-todo borrow book
-deadline submit report /by Sunday
-event project meeting /from Mon 2pm /to 4pm
+todo read book
+todo
+deadline submit report /by Monday
+deadline assignment
+event project meeting /from Tue 2pm /to 4pm
+event workshop /from Wed
 list
 mark 1
-unmark 2
+mark 5
+unmark 1
+unmark 3
+delete 2
+delete 5
+list
+todo go jogging
+deadline complete project /by Friday
+event hackathon /from Sat 10am /to Sun 5pm
+list
+blah blah
+delete abc
+mark 100
+unmark -1
 bye

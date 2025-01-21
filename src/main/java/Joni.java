@@ -42,32 +42,43 @@ public class Joni {
     }
 
     private static boolean processCommand(String input) throws JoniException {
-        if (input.equalsIgnoreCase("bye")) {
-            System.out.println("____________________________________________________________");
-            System.out.println(" Bye. Hope to see you again soon!");
-            System.out.println("____________________________________________________________");
-            return false;
-        } else if (input.equalsIgnoreCase("list")) {
-            printTaskList();
-        } else if (input.startsWith("mark ")) {
-            markTaskAsDone(input);
-        } else if (input.startsWith("unmark ")) {
-            unmarkTask(input);
-        } else if (input.startsWith("todo ")) {
-            if (input.length() <= 5) {
-                throw new JoniException("Oops! The description of a todo cannot be empty. \n"
-                        + "Tip: Try 'todo <task description>'.");
-            }
-            addTodo(input.substring(5).trim());
-        } else if (input.startsWith("deadline ")) {
-            addDeadline(input.substring(9).trim());
-        } else if (input.startsWith("event ")) {
-            addEvent(input.substring(6).trim());
-        } else if (input.startsWith("delete ")) {
-            deleteTask(input);
-        } else {
-            throw new JoniException("Oops! I don't understand that command. \n"
-                    + "Tip: Try 'todo', 'deadline', 'event', 'list', 'mark', 'unmark', or 'delete'.");
+        String[] inputParts = input.split(" ", 2);
+        CommandType command = CommandType.fromString(inputParts[0]);
+
+        switch (command) {
+            case BYE:
+                System.out.println("____________________________________________________________");
+                System.out.println(" Bye. Hope to see you again soon!");
+                System.out.println("____________________________________________________________");
+                return false;
+            case LIST:
+                printTaskList();
+                break;
+            case MARK:
+                markTaskAsDone(inputParts);
+                break;
+            case UNMARK:
+                unmarkTask(inputParts);
+                break;
+            case TODO:
+                if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+                    throw new JoniException("Oops! The description of a todo cannot be empty.\n"
+                            + "Tip: Try 'todo <task description>'.");
+                }
+                addTodo(inputParts[1].trim());
+                break;
+            case DEADLINE:
+                addDeadline(inputParts[1].trim());
+                break;
+            case EVENT:
+                addEvent(inputParts[1].trim());
+                break;
+            case DELETE:
+                deleteTask(inputParts);
+                break;
+            default:
+                throw new JoniException("Oops! I don't understand that command.\n"
+                        + "Tip: Try 'todo', 'deadline', 'event', 'list', 'mark', 'unmark', or 'delete'.");
         }
         return true;
     }
@@ -97,9 +108,28 @@ public class Joni {
         printTaskAdded(tasks.get(tasks.size() - 1));
     }
 
-    private static void deleteTask(String input) throws JoniException {
+    private static void markTaskAsDone(String[] inputParts) throws JoniException {
+        if (inputParts.length < 2) {
+            throw new JoniException("Invalid command! Use 'mark <task number>'.");
+        }
         try {
-            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            int index = Integer.parseInt(inputParts[1]) - 1;
+            tasks.get(index).markAsDone();
+            System.out.println("____________________________________________________________");
+            System.out.println(" Nice! I've marked this task as done:");
+            System.out.println("   " + tasks.get(index));
+            System.out.println("____________________________________________________________");
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new JoniException("Invalid task number! Use 'mark <task number>'.");
+        }
+    }
+
+    private static void deleteTask(String[] inputParts) throws JoniException {
+        if (inputParts.length < 2) {
+            throw new JoniException("Invalid command! Use 'delete <task number>'.");
+        }
+        try {
+            int index = Integer.parseInt(inputParts[1]) - 1;
             if (index < 0 || index >= tasks.size()) {
                 throw new JoniException("Invalid task number! Use 'delete <task number>'.");
             }
@@ -135,22 +165,15 @@ public class Joni {
         System.out.println("____________________________________________________________");
     }
 
-    private static void markTaskAsDone(String input) throws JoniException {
-        try {
-            int index = Integer.parseInt(input.split(" ")[1]) - 1;
-            tasks.get(index).markAsDone();
-            System.out.println("____________________________________________________________");
-            System.out.println(" Nice! I've marked this task as done:");
-            System.out.println("   " + tasks.get(index));
-            System.out.println("____________________________________________________________");
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new JoniException("Invalid task number! Use 'mark <task number>'.");
+    private static void unmarkTask(String[] inputParts) throws JoniException {
+        if (inputParts.length < 2) {
+            throw new JoniException("Invalid command! Use 'unmark <task number>'.");
         }
-    }
-
-    private static void unmarkTask(String input) throws JoniException {
         try {
-            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            int index = Integer.parseInt(inputParts[1]) - 1;
+            if (index < 0 || index >= tasks.size()) {
+                throw new JoniException("Invalid task number! Use 'unmark <task number>'.");
+            }
             tasks.get(index).markAsNotDone();
             System.out.println("____________________________________________________________");
             System.out.println(" OK, I've marked this task as not done yet:");
