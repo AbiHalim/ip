@@ -1,9 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Joni {
-    private static final int MAX_TASKS = 100;
-    private static Task[] tasks = new Task[MAX_TASKS];
-    private static int taskCount = 0;
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
         String logo = "    .---.    .-'''-.                    \n" +
@@ -47,7 +46,7 @@ public class Joni {
             System.out.println("____________________________________________________________");
             System.out.println(" Bye. Hope to see you again soon!");
             System.out.println("____________________________________________________________");
-            return false;  // Exit the loop gracefully
+            return false;
         } else if (input.equalsIgnoreCase("list")) {
             printTaskList();
         } else if (input.startsWith("mark ")) {
@@ -64,17 +63,18 @@ public class Joni {
             addDeadline(input.substring(9).trim());
         } else if (input.startsWith("event ")) {
             addEvent(input.substring(6).trim());
+        } else if (input.startsWith("delete ")) {
+            deleteTask(input);
         } else {
             throw new JoniException("Oops! I don't understand that command. \n"
-                    + "Tip: Try 'todo', 'deadline', 'event', 'list', 'mark', or 'unmark'.");
+                    + "Tip: Try 'todo', 'deadline', 'event', 'list', 'mark', 'unmark', or 'delete'.");
         }
-        return true;  // Continue the loop
+        return true;
     }
 
     private static void addTodo(String description) {
-        tasks[taskCount] = new Todo(description);
-        taskCount++;
-        printTaskAdded(tasks[taskCount - 1]);
+        tasks.add(new Todo(description));
+        printTaskAdded(tasks.get(tasks.size() - 1));
     }
 
     private static void addDeadline(String input) throws JoniException {
@@ -83,9 +83,8 @@ public class Joni {
             throw new JoniException("Oops! A deadline requires '/by' followed by a date/time.\n"
                     + "Tip: Try 'deadline <task description> /by <due date>'.");
         }
-        tasks[taskCount] = new Deadline(parts[0].trim(), parts[1].trim());
-        taskCount++;
-        printTaskAdded(tasks[taskCount - 1]);
+        tasks.add(new Deadline(parts[0].trim(), parts[1].trim()));
+        printTaskAdded(tasks.get(tasks.size() - 1));
     }
 
     private static void addEvent(String input) throws JoniException {
@@ -94,27 +93,43 @@ public class Joni {
             throw new JoniException("Oops! An event requires '/from' and '/to' followed by dates/times.\n"
                     + "Tip: Try 'event <description> /from <start time> /to <end time>'.");
         }
-        tasks[taskCount] = new Event(parts[0].trim(), parts[1].trim(), parts[2].trim());
-        taskCount++;
-        printTaskAdded(tasks[taskCount - 1]);
+        tasks.add(new Event(parts[0].trim(), parts[1].trim(), parts[2].trim()));
+        printTaskAdded(tasks.get(tasks.size() - 1));
+    }
+
+    private static void deleteTask(String input) throws JoniException {
+        try {
+            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            if (index < 0 || index >= tasks.size()) {
+                throw new JoniException("Invalid task number! Use 'delete <task number>'.");
+            }
+            Task removedTask = tasks.remove(index);
+            System.out.println("____________________________________________________________");
+            System.out.println(" Noted. I've removed this task:");
+            System.out.println("   " + removedTask);
+            System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println("____________________________________________________________");
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new JoniException("Invalid task number! Use 'delete <task number>'.");
+        }
     }
 
     private static void printTaskAdded(Task task) {
         System.out.println("____________________________________________________________");
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + task);
-        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
         System.out.println("____________________________________________________________");
     }
 
     private static void printTaskList() {
         System.out.println("____________________________________________________________");
-        if (taskCount == 0) {
+        if (tasks.isEmpty()) {
             System.out.println(" No tasks added yet.");
         } else {
             System.out.println(" Here are the tasks in your list:");
-            for (int i = 0; i < taskCount; i++) {
-                System.out.println(" " + (i + 1) + "." + tasks[i]);
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + tasks.get(i));
             }
         }
         System.out.println("____________________________________________________________");
@@ -123,12 +138,12 @@ public class Joni {
     private static void markTaskAsDone(String input) throws JoniException {
         try {
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
-            tasks[index].markAsDone();
+            tasks.get(index).markAsDone();
             System.out.println("____________________________________________________________");
             System.out.println(" Nice! I've marked this task as done:");
-            System.out.println("   " + tasks[index]);
+            System.out.println("   " + tasks.get(index));
             System.out.println("____________________________________________________________");
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new JoniException("Invalid task number! Use 'mark <task number>'.");
         }
     }
@@ -136,12 +151,12 @@ public class Joni {
     private static void unmarkTask(String input) throws JoniException {
         try {
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
-            tasks[index].markAsNotDone();
+            tasks.get(index).markAsNotDone();
             System.out.println("____________________________________________________________");
             System.out.println(" OK, I've marked this task as not done yet:");
-            System.out.println("   " + tasks[index]);
+            System.out.println("   " + tasks.get(index));
             System.out.println("____________________________________________________________");
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new JoniException("Invalid task number! Use 'unmark <task number>'.");
         }
     }
