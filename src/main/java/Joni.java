@@ -23,7 +23,6 @@ public class Joni {
 
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! My name is Joni");
-        System.out.println(" And this is my promise: helping you!");
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
 
@@ -42,25 +41,59 @@ public class Joni {
                 markTaskAsDone(input);
             } else if (input.startsWith("unmark ")) {
                 unmarkTask(input);
+            } else if (input.startsWith("todo ")) {
+                addTodo(input.substring(5));
+            } else if (input.startsWith("deadline ")) {
+                addDeadline(input.substring(9));
+            } else if (input.startsWith("event ")) {
+                addEvent(input.substring(6));
             } else {
-                addTask(input);
+                System.out.println("____________________________________________________________");
+                System.out.println(" Sorry, I don't understand that command.");
+                System.out.println("____________________________________________________________");
             }
         }
         sc.close();
     }
 
-    private static void addTask(String taskDescription) {
-        if (taskCount < MAX_TASKS) {
-            tasks[taskCount] = new Task(taskDescription);
-            taskCount++;
+    private static void addTodo(String description) {
+        tasks[taskCount] = new Todo(description);
+        taskCount++;
+        printTaskAdded(tasks[taskCount - 1]);
+    }
+
+    private static void addDeadline(String input) {
+        String[] parts = input.split(" /by ", 2);
+        if (parts.length < 2) {
             System.out.println("____________________________________________________________");
-            System.out.println(" added: " + taskDescription);
+            System.out.println(" Please provide a valid deadline with /by keyword.");
             System.out.println("____________________________________________________________");
-        } else {
-            System.out.println("____________________________________________________________");
-            System.out.println(" Sorry, I can't add more tasks. The list is full!");
-            System.out.println("____________________________________________________________");
+            return;
         }
+        tasks[taskCount] = new Deadline(parts[0], parts[1]);
+        taskCount++;
+        printTaskAdded(tasks[taskCount - 1]);
+    }
+
+    private static void addEvent(String input) {
+        String[] parts = input.split(" /from | /to ", 3);
+        if (parts.length < 3) {
+            System.out.println("____________________________________________________________");
+            System.out.println(" Please provide a valid event with /from and /to keywords.");
+            System.out.println("____________________________________________________________");
+            return;
+        }
+        tasks[taskCount] = new Event(parts[0], parts[1], parts[2]);
+        taskCount++;
+        printTaskAdded(tasks[taskCount - 1]);
+    }
+
+    private static void printTaskAdded(Task task) {
+        System.out.println("____________________________________________________________");
+        System.out.println(" Got it. I've added this task:");
+        System.out.println("   " + task);
+        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println("____________________________________________________________");
     }
 
     private static void printTaskList() {
@@ -77,44 +110,20 @@ public class Joni {
     }
 
     private static void markTaskAsDone(String input) {
-        try {
-            int index = Integer.parseInt(input.split(" ")[1]) - 1;
-            if (index >= 0 && index < taskCount) {
-                tasks[index].markAsDone();
-                System.out.println("____________________________________________________________");
-                System.out.println(" Nice! I've marked this task as done:");
-                System.out.println("   " + tasks[index]);
-                System.out.println("____________________________________________________________");
-            } else {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Invalid task number!");
-                System.out.println("____________________________________________________________");
-            }
-        } catch (Exception e) {
-            System.out.println("____________________________________________________________");
-            System.out.println(" Please enter a valid task number.");
-            System.out.println("____________________________________________________________");
-        }
+        int index = Integer.parseInt(input.split(" ")[1]) - 1;
+        tasks[index].markAsDone();
+        System.out.println("____________________________________________________________");
+        System.out.println(" Nice! I've marked this task as done:");
+        System.out.println("   " + tasks[index]);
+        System.out.println("____________________________________________________________");
     }
 
     private static void unmarkTask(String input) {
-        try {
-            int index = Integer.parseInt(input.split(" ")[1]) - 1;
-            if (index >= 0 && index < taskCount) {
-                tasks[index].markAsNotDone();
-                System.out.println("____________________________________________________________");
-                System.out.println(" OK, I've marked this task as not done yet:");
-                System.out.println("   " + tasks[index]);
-                System.out.println("____________________________________________________________");
-            } else {
-                System.out.println("____________________________________________________________");
-                System.out.println(" Invalid task number!");
-                System.out.println("____________________________________________________________");
-            }
-        } catch (Exception e) {
-            System.out.println("____________________________________________________________");
-            System.out.println(" Please enter a valid task number.");
-            System.out.println("____________________________________________________________");
-        }
+        int index = Integer.parseInt(input.split(" ")[1]) - 1;
+        tasks[index].markAsNotDone();
+        System.out.println("____________________________________________________________");
+        System.out.println(" OK, I've marked this task as not done yet:");
+        System.out.println("   " + tasks[index]);
+        System.out.println("____________________________________________________________");
     }
 }
