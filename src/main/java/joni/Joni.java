@@ -28,7 +28,8 @@ public class Joni {
 
         System.out.println(DIVIDER);
         System.out.println(" Hello! My name is Joni");
-        System.out.println(" What can I do for you?");
+        System.out.println(" And this is my promise: helping you!");
+        System.out.println(" Type \"help\" for a list of commands.");
         System.out.println(DIVIDER);
 
         Scanner sc = new Scanner(System.in);
@@ -52,6 +53,11 @@ public class Joni {
         CommandType command = CommandType.fromString(inputParts[0]);
 
         switch (command) {
+        case BYE:
+            System.out.println(DIVIDER);
+            System.out.println(" Bye. Hope to see you again soon!");
+            System.out.println(DIVIDER);
+            return false;
         case HELP:
             System.out.println(DIVIDER);
             System.out.println(" Here are the available commands:");
@@ -65,11 +71,7 @@ public class Joni {
             System.out.println(" 8. help - Displays this help message.");
             System.out.println(" 9. bye - Exits the chatbot.");
             System.out.println(DIVIDER);
-        case BYE:
-            System.out.println(DIVIDER);
-            System.out.println(" Bye. Hope to see you again soon!");
-            System.out.println(DIVIDER);
-            return false;
+            break;
         case LIST:
             printTaskList();
             break;
