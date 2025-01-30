@@ -21,6 +21,13 @@ public class AddCommand extends Command {
         this.type = type;
     }
 
+    /**
+     * Executes the add task command.
+     *
+     * @param tasks The TaskList instance to add the task to.
+     * @param ui The UI instance to display messages.
+     * @throws JoniException If there is an error in task creation.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui) throws JoniException {
         if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {

@@ -7,6 +7,13 @@ import joni.Ui;
  * Displays available commands.
  */
 public class HelpCommand extends Command {
+
+    /**
+     * Displays a list of available commands.
+     *
+     * @param tasks The TaskList instance.
+     * @param ui The UI instance to display messages.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui) {
         String helpMessage = "Here are the available commands:\n"

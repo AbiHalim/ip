@@ -16,6 +16,14 @@ import joni.task.TaskType;
  * Parses user input into Commands.
  */
 public class Parser {
+
+    /**
+     * Parses user input and returns the corresponding command.
+     *
+     * @param userInput The raw input entered by the user.
+     * @return A Command object representing the user's request.
+     * @throws JoniException If the input command is not recognized.
+     */
     public static Command parse(String userInput) throws JoniException {
         String[] inputParts = userInput.split(" ", 2);
         CommandType command = CommandType.fromString(inputParts[0]);

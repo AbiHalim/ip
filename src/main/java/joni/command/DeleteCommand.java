@@ -23,6 +23,13 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Executes the delete task command.
+     *
+     * @param tasks The TaskList instance to remove the task from.
+     * @param ui The UI instance to display messages.
+     * @throws JoniException If the task index is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui) throws JoniException {
         Task removedTask = tasks.removeTask(taskIndex);
