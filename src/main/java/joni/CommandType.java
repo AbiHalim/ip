@@ -1,10 +1,11 @@
 package joni;
 
 enum CommandType {
-    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN;
+    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN, HELP;
 
     public static CommandType fromString(String command) {
         switch (command.toLowerCase()) {
+        case "help": return HELP;
         case "bye": return BYE;
         case "exit": return BYE;
         case "list": return LIST;
