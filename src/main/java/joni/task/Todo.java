@@ -1,6 +1,12 @@
-package joni;
+package joni.task;
 
-class Todo extends Task {
+import joni.task.Task;
+import joni.task.TaskType;
+
+/**
+ * Represents a basic to do task
+ */
+public class Todo extends Task {
     public Todo(String description) {
         super(description, TaskType.TODO);
     }

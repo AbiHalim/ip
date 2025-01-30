@@ -1,6 +1,9 @@
-package joni;
+package joni.task;
 
-abstract class Task {
+/**
+ * Represents a task to be put on the to do list
+ */
+public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected TaskType taskType;
