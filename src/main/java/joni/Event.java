@@ -1,3 +1,5 @@
+package joni;
+
 class Event extends Task {
     protected String from;
     protected String to;
@@ -6,6 +8,17 @@ class Event extends Task {
         super(description, TaskType.EVENT);
         this.from = from;
         this.to = to;
+    }
+
+    public Event(String description, String from, String to, boolean isDone) {
+        super(description, TaskType.EVENT, isDone);
+        this.from = from;
+        this.to = to;
+    }
+
+    @Override
+    public String toCsvFormat() {
+        return "E, " + (isDone ? "1" : "0") + ", " + description + ", " + from + ", " + to;
     }
 
     @Override

@@ -1,4 +1,6 @@
-public abstract class Task {
+package joni;
+
+abstract class Task {
     protected String description;
     protected boolean isDone;
     protected TaskType taskType;
@@ -6,6 +8,12 @@ public abstract class Task {
     public Task(String description, TaskType taskType) {
         this.description = description;
         this.isDone = false;
+        this.taskType = taskType;
+    }
+
+    public Task(String description, TaskType taskType, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
         this.taskType = taskType;
     }
 
@@ -20,6 +28,8 @@ public abstract class Task {
     public void markAsNotDone() {
         this.isDone = false;
     }
+
+    public abstract String toCsvFormat();
 
     @Override
     public String toString() {
