@@ -7,5 +7,6 @@ This week (and probably for the whole project), I used ChatGPT-4o to work on the
 ## Week 3:
 - have to remind chatgpt of most recent version of codebase, sometimes forget
 - really useful in avoiding typing out lots of code repetitively (ex. all the different tasks, methods)
+- really useful in auto generating javadoc comments, otherwise would have taken long
 - trained it on the course's coding conventions
 

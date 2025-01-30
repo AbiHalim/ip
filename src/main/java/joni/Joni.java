@@ -10,6 +10,12 @@ public class Joni {
     private static final TaskList tasks = new TaskList(Storage.loadTasks());
     private static final Ui ui = new Ui();
 
+    /**
+     * Entry point for the chatbot application.
+     * Initializes the chatbot and processes user input commands.
+     *
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         ui.showWelcome();
         boolean isRunning = true;

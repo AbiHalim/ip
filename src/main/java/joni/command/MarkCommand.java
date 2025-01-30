@@ -25,6 +25,13 @@ public class MarkCommand extends Command {
         this.isMarkingDone = isMarkingDone;
     }
 
+    /**
+     * Executes the mark or unmark task command.
+     *
+     * @param tasks The TaskList instance.
+     * @param ui The UI instance to display messages.
+     * @throws JoniException If the task index is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui) throws JoniException {
         Task task = tasks.markTask(taskIndex, isMarkingDone);

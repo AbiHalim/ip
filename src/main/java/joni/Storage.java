@@ -21,6 +21,11 @@ public class Storage {
     private static final String FILE_PATH = DIRECTORY + "/savedata.csv";
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Saves the current list of tasks to a CSV file.
+     *
+     * @param tasks The list of tasks to be saved.
+     */
     public static void saveTasks(ArrayList<Task> tasks) {
         ensureFileExists();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -33,6 +38,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the CSV file.
+     * If the file does not exist, it creates a new empty file.
+     *
+     * @return An ArrayList of Task objects loaded from storage.
+     */
     public static ArrayList<Task> loadTasks() {
         ensureFileExists();
         ArrayList<Task> tasks = new ArrayList<>();
