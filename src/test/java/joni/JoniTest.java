@@ -1,6 +1,7 @@
 package joni;
 
 import joni.command.Command;
+import joni.command.Parser;
 import joni.task.TaskList;
 
 import org.junit.jupiter.api.BeforeEach;

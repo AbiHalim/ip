@@ -1,5 +1,7 @@
-package joni;
+package joni.command;
 
+import joni.command.CommandType;
+import joni.JoniException;
 import joni.command.Command;
 import joni.command.AddCommand;
 import joni.command.ExitCommand;

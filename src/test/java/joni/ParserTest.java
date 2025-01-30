@@ -1,7 +1,7 @@
 package joni;
 
 import joni.command.*;
-import joni.task.TaskType;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

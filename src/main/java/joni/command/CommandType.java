@@ -1,4 +1,4 @@
-package joni;
+package joni.command;
 
 enum CommandType {
     BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN, HELP, FIND;
