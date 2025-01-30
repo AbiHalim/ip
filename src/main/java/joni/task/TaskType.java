@@ -1,4 +1,4 @@
-package joni;
+package joni.task;
 
 /**
  * Represents the different possible types of tasks

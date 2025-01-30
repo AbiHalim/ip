@@ -1,4 +1,8 @@
-package joni;
+package joni.task;
+
+import joni.JoniException;
+import joni.task.Task;
+import joni.task.TaskType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +11,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents an event with a start and end date
  */
-class Event extends Task {
+public class Event extends Task {
     protected LocalDate from;
     protected LocalDate to;
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -1,6 +1,6 @@
 package joni.command;
 
-import joni.TaskList;
+import joni.task.TaskList;
 import joni.Ui;
 
 /**

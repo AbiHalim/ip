@@ -2,8 +2,8 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
-import joni.Task;
-import joni.TaskList;
+import joni.task.Task;
+import joni.task.TaskList;
 import joni.Ui;
 
 /**

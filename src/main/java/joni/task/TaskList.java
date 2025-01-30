@@ -1,4 +1,8 @@
-package joni;
+package joni.task;
+
+import joni.JoniException;
+import joni.Ui;
+import joni.task.Task;
 
 import java.util.ArrayList;
 

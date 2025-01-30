@@ -1,6 +1,7 @@
 package joni;
 
 import joni.command.Command;
+import joni.task.TaskList;
 
 /**
  * Main class for the chatbot.

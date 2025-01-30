@@ -1,4 +1,8 @@
-package joni;
+package joni.task;
+
+import joni.JoniException;
+import joni.task.Task;
+import joni.task.TaskType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

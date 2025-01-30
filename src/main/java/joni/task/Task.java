@@ -1,4 +1,4 @@
-package joni;
+package joni.task;
 
 /**
  * Represents a task to be put on the to do list

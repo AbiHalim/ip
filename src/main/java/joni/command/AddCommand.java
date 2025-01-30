@@ -1,12 +1,12 @@
 package joni.command;
 
-import joni.Deadline;
+import joni.task.Deadline;
 import joni.JoniException;
 import joni.Storage;
-import joni.Task;
-import joni.TaskList;
-import joni.TaskType;
-import joni.Todo;
+import joni.task.Task;
+import joni.task.TaskList;
+import joni.task.TaskType;
+import joni.task.Todo;
 import joni.Ui;
 
 /**

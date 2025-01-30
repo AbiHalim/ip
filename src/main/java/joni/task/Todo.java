@@ -1,4 +1,7 @@
-package joni;
+package joni.task;
+
+import joni.task.Task;
+import joni.task.TaskType;
 
 /**
  * Represents a basic to do task

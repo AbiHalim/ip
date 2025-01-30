@@ -1,5 +1,10 @@
 package joni;
 
+import joni.task.Deadline;
+import joni.task.Event;
+import joni.task.Task;
+import joni.task.Todo;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
