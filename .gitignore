@@ -14,5 +14,9 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/EXPECTED.TXT
+# Automated testing
+text-ui-test/EXPECTED.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+
+# Save data
+data/

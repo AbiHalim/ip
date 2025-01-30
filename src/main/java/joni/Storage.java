@@ -4,18 +4,18 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
-class Storage {
+/**
+ * Handles loading and saving of tasks to a CSV file.
+ */
+public class Storage {
     private static final String DIRECTORY = "data";
     private static final String FILE_PATH = DIRECTORY + "/savedata.csv";
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    /**
-     * Saves the current list of tasks to savedata.csv.
-     *
-     * @param tasks List of tasks to be saved.
-     */
     public static void saveTasks(ArrayList<Task> tasks) {
         ensureFileExists();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -28,11 +28,6 @@ class Storage {
         }
     }
 
-    /**
-     * Loads tasks from savedata.csv and returns them as a list.
-     *
-     * @return List of tasks loaded from file.
-     */
     public static ArrayList<Task> loadTasks() {
         ensureFileExists();
         ArrayList<Task> tasks = new ArrayList<>();
@@ -52,9 +47,6 @@ class Storage {
         return tasks;
     }
 
-    /**
-     * Ensures the data directory and file exist before reading/writing.
-     */
     private static void ensureFileExists() {
         try {
             Path directoryPath = Paths.get(DIRECTORY);
@@ -71,12 +63,6 @@ class Storage {
         }
     }
 
-    /**
-     * Parses a CSV line into a Task object.
-     *
-     * @param csvLine The CSV-formatted task entry.
-     * @return Task object or null if parsing fails.
-     */
     private static Task parseTaskFromCsv(String csvLine) {
         String[] parts = csvLine.split(", ");
         if (parts.length < 3) {
@@ -94,15 +80,18 @@ class Storage {
                 return new Todo(description, isDone);
             case "D":
                 if (parts.length < 4) return null;
-                return new Deadline(description, parts[3], isDone);
+                LocalDate deadlineDate = LocalDate.parse(parts[3], DATE_FORMATTER);
+                return new Deadline(description, deadlineDate, isDone);
             case "E":
                 if (parts.length < 5) return null;
-                return new Event(description, parts[3], parts[4], isDone);
+                LocalDate eventFrom = LocalDate.parse(parts[3], DATE_FORMATTER);
+                LocalDate eventTo = LocalDate.parse(parts[4], DATE_FORMATTER);
+                return new Event(description, eventFrom, eventTo, isDone);
             default:
                 return null;
             }
-        } catch (JoniException e) {
-            System.out.println("Error parsing saved task: " + csvLine);
+        } catch (Exception e) {
+            System.out.println("Error parsing task from file: " + csvLine);
             return null;
         }
     }
