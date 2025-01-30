@@ -113,8 +113,8 @@ public class Joni {
     private static void addDeadline(String input) throws JoniException {
         String[] parts = input.split(" /by ", 2);
         if (parts.length < 2) {
-            throw new JoniException("Oops! A deadline requires '/by' followed by a date/time.\n"
-                    + "Tip: Try 'deadline <task description> /by <due date>'.");
+            throw new JoniException("Oops! A deadline requires '/by' followed by a valid date.\n"
+                    + "Tip: Try 'deadline <task description> /by yyyy-MM-dd' (e.g., deadline return book /by 2025-02-15).");
         }
         tasks.add(new Deadline(parts[0].trim(), parts[1].trim()));
         Storage.saveTasks(tasks);
@@ -124,8 +124,8 @@ public class Joni {
     private static void addEvent(String input) throws JoniException {
         String[] parts = input.split(" /from | /to ", 3);
         if (parts.length < 3) {
-            throw new JoniException("Oops! An event requires '/from' and '/to' followed by dates/times.\n"
-                    + "Tip: Try 'event <description> /from <start time> /to <end time>'.");
+            throw new JoniException("Oops! An event requires '/from' and '/to' followed by dates.\n"
+                    + "Tip: Try 'event <description> /from yyyy-MM-dd /to yyyy-MM-dd'.");
         }
         tasks.add(new Event(parts[0].trim(), parts[1].trim(), parts[2].trim()));
         Storage.saveTasks(tasks);

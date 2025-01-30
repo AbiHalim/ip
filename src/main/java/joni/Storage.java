@@ -88,16 +88,21 @@ class Storage {
         boolean isDone = parts[1].equals("1");
         String description = parts[2];
 
-        switch (type) {
-        case "T":
-            return new Todo(description, isDone);
-        case "D":
-            if (parts.length < 4) return null;
-            return new Deadline(description, parts[3], isDone);
-        case "E":
-            if (parts.length < 5) return null;
-            return new Event(description, parts[3], parts[4], isDone);
-        default:
+        try {
+            switch (type) {
+            case "T":
+                return new Todo(description, isDone);
+            case "D":
+                if (parts.length < 4) return null;
+                return new Deadline(description, parts[3], isDone);
+            case "E":
+                if (parts.length < 5) return null;
+                return new Event(description, parts[3], parts[4], isDone);
+            default:
+                return null;
+            }
+        } catch (JoniException e) {
+            System.out.println("Error parsing saved task: " + csvLine);
             return null;
         }
     }
