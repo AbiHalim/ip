@@ -1,7 +1,7 @@
 package joni;
 
 enum CommandType {
-    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN, HELP;
+    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN, HELP, FIND;
 
     public static CommandType fromString(String command) {
         switch (command.toLowerCase()) {
@@ -15,6 +15,7 @@ enum CommandType {
         case "deadline": return DEADLINE;
         case "event": return EVENT;
         case "delete": return DELETE;
+        case "find": return FIND;
         default: return UNKNOWN;
         }
     }

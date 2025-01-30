@@ -7,6 +7,7 @@ import joni.command.ListCommand;
 import joni.command.DeleteCommand;
 import joni.command.MarkCommand;
 import joni.command.HelpCommand;
+import joni.command.FindCommand;
 import joni.task.TaskType;
 
 /**
@@ -34,6 +35,8 @@ public class Parser {
             return new MarkCommand(inputParts, false);
         case HELP:
             return new HelpCommand();
+        case FIND:
+            return new FindCommand(inputParts);
         case BYE:
             return new ExitCommand();
         default:
