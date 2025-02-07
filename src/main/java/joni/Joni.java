@@ -4,32 +4,25 @@ import joni.command.Command;
 import joni.command.Parser;
 import joni.task.TaskList;
 
-/**
- * Main class for the chatbot.
- */
 public class Joni {
-    private static final TaskList TASKS = new TaskList(Storage.loadTasks());
-    private static final Ui UI = new Ui();
+    private TaskList tasks;
+    private Storage storage;
 
-    /**
-     * Entry point for the chatbot application.
-     * Initializes the chatbot and processes user input commands.
-     *
-     * @param args Command line arguments (not used).
-     */
-    public static void main(String[] args) {
-        UI.showWelcome();
-        boolean isRunning = true;
+    public Joni() {
+        storage = new Storage();
+        tasks = new TaskList(storage.loadTasks());
+    }
 
-        while (isRunning) {
-            try {
-                String input = UI.readCommand();
-                Command command = Parser.parse(input);
-                command.execute(TASKS, UI);
-                isRunning = !command.isExit();
-            } catch (JoniException e) {
-                UI.showError(e.getMessage());
-            }
+    public String getWelcomeMessage() {
+        return "Hello! I'm Joni\nWhat can I do for you?";
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks);
+        } catch (JoniException e) {
+            return e.getMessage();
         }
     }
 }

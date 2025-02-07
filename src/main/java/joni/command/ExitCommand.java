@@ -1,6 +1,5 @@
 package joni.command;
 
-import joni.Ui;
 import joni.task.TaskList;
 
 /**
@@ -12,11 +11,10 @@ public class ExitCommand extends Command {
      * Executes the exit command and prints the farewell message.
      *
      * @param tasks The TaskList instance.
-     * @param ui The UI instance to display messages.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
-        ui.printMessage("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks) {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**

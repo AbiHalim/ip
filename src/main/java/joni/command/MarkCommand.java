@@ -2,7 +2,6 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
-import joni.Ui;
 import joni.task.Task;
 import joni.task.TaskList;
 
@@ -35,11 +34,10 @@ public class MarkCommand extends Command {
      * Executes the mark or unmark task command.
      *
      * @param tasks The TaskList instance.
-     * @param ui The UI instance to display messages.
      * @throws JoniException If the task index is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws JoniException {
+    public String execute(TaskList tasks) throws JoniException {
         Task task = tasks.markTask(taskIndex, isMarkingDone);
         Storage.saveTasks(tasks.getTasks());
 
@@ -47,6 +45,6 @@ public class MarkCommand extends Command {
                 ? "Nice! I've marked this task as done:\n   " + task
                 : "OK, I've marked this task as not done yet:\n   " + task;
 
-        ui.printMessage(message);
+        return message;
     }
 }
