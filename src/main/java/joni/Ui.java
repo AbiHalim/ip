@@ -3,7 +3,7 @@ package joni;
 import java.util.Scanner;
 
 /**
- * Contains the user interface for the chatbot
+ * Contains the text-based user interface for the chatbot
  */
 public class Ui {
     private static final String DIVIDER = "____________________________________________________________";

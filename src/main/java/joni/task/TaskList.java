@@ -3,7 +3,6 @@ package joni.task;
 import java.util.ArrayList;
 
 import joni.JoniException;
-import joni.Ui;
 
 /**
  * Manages the task list and its operations.
@@ -72,20 +71,17 @@ public class TaskList {
 
     /**
      * Prints all tasks in the task list.
-     *
-     * @param ui The UI instance used to display messages.
      */
-    public void printTaskList(Ui ui) {
+    public String printTaskList() {
         if (tasks.isEmpty()) {
-            ui.printMessage("No tasks added yet.");
-            return;
+            return "No tasks added yet.";
         }
 
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             sb.append(" ").append(i + 1).append(". ").append(tasks.get(i)).append("\n");
         }
-        ui.printMessage(sb.toString());
+        return sb.toString();
     }
 
     /**

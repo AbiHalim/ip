@@ -8,28 +8,41 @@ import joni.task.TaskList;
  * Main class for the chatbot.
  */
 public class Joni {
-    private static final TaskList TASKS = new TaskList(Storage.loadTasks());
-    private static final Ui UI = new Ui();
+    private TaskList tasks;
+    private Storage storage;
 
     /**
-     * Entry point for the chatbot application.
-     * Initializes the chatbot and processes user input commands.
-     *
-     * @param args Command line arguments (not used).
+     * Initializes a Joni instance with storage and task list
      */
-    public static void main(String[] args) {
-        UI.showWelcome();
-        boolean isRunning = true;
+    public Joni() {
+        storage = new Storage();
+        tasks = new TaskList(storage.loadTasks());
+    }
 
-        while (isRunning) {
-            try {
-                String input = UI.readCommand();
-                Command command = Parser.parse(input);
-                command.execute(TASKS, UI);
-                isRunning = !command.isExit();
-            } catch (JoniException e) {
-                UI.showError(e.getMessage());
-            }
+    /**
+     * Returns the welcome message for the Joni chatbot.
+     *
+     * @return A string containing the welcome message.
+     */
+    public String getWelcomeMessage() {
+        return "Hello! My name is Joni\n And this is my promise: helping you!\n"
+                + "Type \"help\" for a list of commands.";
+    }
+
+    /**
+     * Processes the user input, executes the corresponding command,
+     * and returns the response from Joni.
+     *
+     * @param input The user input string to be processed.
+     * @return A string representing Joni's response to the given input.
+     * @throws JoniException If there is an issue processing the input.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks);
+        } catch (JoniException e) {
+            return e.getMessage();
         }
     }
 }

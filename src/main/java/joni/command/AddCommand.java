@@ -2,7 +2,6 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
-import joni.Ui;
 import joni.task.Deadline;
 import joni.task.Task;
 import joni.task.TaskList;
@@ -32,11 +31,11 @@ public class AddCommand extends Command {
      * Executes the add task command.
      *
      * @param tasks The TaskList instance to add the task to.
-     * @param ui The UI instance to display messages.
+     * @return The string representation of the command's response.
      * @throws JoniException If there is an error in task creation.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws JoniException {
+    public String execute(TaskList tasks) throws JoniException {
         if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
             throw new JoniException("Oops! The description cannot be empty.");
         }
@@ -59,6 +58,6 @@ public class AddCommand extends Command {
 
         tasks.addTask(task);
         Storage.saveTasks(tasks.getTasks());
-        ui.printMessage("Got it! Task added:\n   " + task);
+        return "Got it! Task added:\n   " + task;
     }
 }

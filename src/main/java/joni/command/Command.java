@@ -1,7 +1,6 @@
 package joni.command;
 
 import joni.JoniException;
-import joni.Ui;
 import joni.task.TaskList;
 
 /**
@@ -13,10 +12,10 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks The TaskList instance to perform operations on.
-     * @param ui The UI instance for user interaction.
+     * @return The string representation of the command's response.
      * @throws JoniException If an error occurs during execution.
      */
-    public abstract void execute(TaskList tasks, Ui ui) throws JoniException;
+    public abstract String execute(TaskList tasks) throws JoniException;
 
     /**
      * Determines if the command is an exit command.

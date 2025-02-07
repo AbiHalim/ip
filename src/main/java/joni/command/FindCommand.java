@@ -3,7 +3,6 @@ package joni.command;
 import java.util.ArrayList;
 
 import joni.JoniException;
-import joni.Ui;
 import joni.task.Task;
 import joni.task.TaskList;
 
@@ -30,10 +29,10 @@ public class FindCommand extends Command {
      * Executes the find command by searching for tasks that contain the keyword.
      *
      * @param tasks The task list to search within.
-     * @param ui The user interface to display results.
+     * @return The string representation of the command's response.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
 
         for (Task task : tasks.getTasks()) {
@@ -43,13 +42,13 @@ public class FindCommand extends Command {
         }
 
         if (matchingTasks.isEmpty()) {
-            ui.printMessage("No matching tasks found.");
+            return "No matching tasks found.";
         } else {
             StringBuilder result = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < matchingTasks.size(); i++) {
                 result.append(" ").append(i + 1).append(". ").append(matchingTasks.get(i)).append("\n");
             }
-            ui.printMessage(result.toString());
+            return result.toString();
         }
     }
 }

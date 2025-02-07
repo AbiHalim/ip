@@ -2,7 +2,6 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
-import joni.Ui;
 import joni.task.Task;
 import joni.task.TaskList;
 
@@ -32,15 +31,15 @@ public class DeleteCommand extends Command {
      * Executes the delete task command.
      *
      * @param tasks The TaskList instance to remove the task from.
-     * @param ui The UI instance to display messages.
+     * @return The string representation of the command's response.
      * @throws JoniException If the task index is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) throws JoniException {
+    public String execute(TaskList tasks) throws JoniException {
         Task removedTask = tasks.removeTask(taskIndex);
         Storage.saveTasks(tasks.getTasks());
 
-        ui.printMessage("Noted. I've removed this task:\n   " + removedTask
-                + "\nNow you have " + tasks.getTasks().size() + " tasks in the list.");
+        return "Noted. I've removed this task:\n   " + removedTask
+                + "\nNow you have " + tasks.getTasks().size() + " tasks in the list.";
     }
 }

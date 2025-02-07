@@ -1,6 +1,5 @@
 package joni.command;
 
-import joni.Ui;
 import joni.task.TaskList;
 
 
@@ -13,10 +12,10 @@ public class HelpCommand extends Command {
      * Displays a list of available commands.
      *
      * @param tasks The TaskList instance.
-     * @param ui The UI instance to display messages.
+     * @return The string representation of the command's response.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks) {
         String helpMessage = "Here are the available commands:\n"
                 + " 1. list - Shows all tasks.\n"
                 + " 2. todo <description> - Adds a new todo task.\n"
@@ -28,6 +27,6 @@ public class HelpCommand extends Command {
                 + " 8. help - Displays this help message.\n"
                 + " 9. find <keyword> - Finds all tasks containing <keyword> "
                 + " 10. bye - Exits the chatbot.";
-        ui.printMessage(helpMessage);
+        return helpMessage;
     }
 }
