@@ -15,23 +15,16 @@ public class MainWindow extends AnchorPane {
     @FXML private Button sendButton;
 
     private Joni joni;
-    private Image userImage = new Image(getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image joniImage = new Image(getClass().getResourceAsStream("/images/DaJoni.png"));
+    private Image userImage = new Image(getClass().getResourceAsStream("/images/User.png"));
+    private Image joniImage = new Image(getClass().getResourceAsStream("/images/Joni.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        showWelcome();
     }
 
     public void setJoni(Joni j) {
         joni = j;
-    }
-
-    private void showWelcome() {
-        dialogContainer.getChildren().addAll(
-                DialogBox.getJoniDialog(joni.getWelcomeMessage(), joniImage)
-        );
     }
 
     @FXML
