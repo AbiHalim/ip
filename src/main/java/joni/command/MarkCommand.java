@@ -34,6 +34,7 @@ public class MarkCommand extends Command {
      * Executes the mark or unmark task command.
      *
      * @param tasks The TaskList instance.
+     * @return The string representation of the command's response.
      * @throws JoniException If the task index is invalid.
      */
     @Override

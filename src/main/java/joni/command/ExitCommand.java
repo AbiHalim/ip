@@ -11,6 +11,7 @@ public class ExitCommand extends Command {
      * Executes the exit command and prints the farewell message.
      *
      * @param tasks The TaskList instance.
+     * @return The string representation of the command's response.
      */
     @Override
     public String execute(TaskList tasks) {

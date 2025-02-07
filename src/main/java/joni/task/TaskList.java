@@ -3,7 +3,6 @@ package joni.task;
 import java.util.ArrayList;
 
 import joni.JoniException;
-import joni.Ui;
 
 /**
  * Manages the task list and its operations.

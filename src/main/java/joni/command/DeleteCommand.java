@@ -31,6 +31,7 @@ public class DeleteCommand extends Command {
      * Executes the delete task command.
      *
      * @param tasks The TaskList instance to remove the task from.
+     * @return The string representation of the command's response.
      * @throws JoniException If the task index is invalid.
      */
     @Override

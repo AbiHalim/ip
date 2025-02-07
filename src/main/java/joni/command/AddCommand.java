@@ -2,7 +2,6 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
-import joni.Ui;
 import joni.task.Deadline;
 import joni.task.Task;
 import joni.task.TaskList;
@@ -32,6 +31,7 @@ public class AddCommand extends Command {
      * Executes the add task command.
      *
      * @param tasks The TaskList instance to add the task to.
+     * @return The string representation of the command's response.
      * @throws JoniException If there is an error in task creation.
      */
     @Override

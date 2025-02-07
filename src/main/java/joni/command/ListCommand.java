@@ -11,6 +11,7 @@ public class ListCommand extends Command {
      * Displays all tasks in the task list.
      *
      * @param tasks The TaskList instance.
+     * @return The string representation of the command's response.
      */
     @Override
     public String execute(TaskList tasks) {

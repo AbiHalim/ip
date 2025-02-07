@@ -12,6 +12,7 @@ public class HelpCommand extends Command {
      * Displays a list of available commands.
      *
      * @param tasks The TaskList instance.
+     * @return The string representation of the command's response.
      */
     @Override
     public String execute(TaskList tasks) {
