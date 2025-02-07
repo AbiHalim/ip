@@ -1,11 +1,11 @@
 package joni.command;
 
+import java.util.ArrayList;
+
 import joni.JoniException;
+import joni.Ui;
 import joni.task.Task;
 import joni.task.TaskList;
-import joni.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Handles searching for tasks based on a keyword.

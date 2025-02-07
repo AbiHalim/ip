@@ -1,17 +1,21 @@
 package joni;
 
-import joni.task.Deadline;
-import joni.task.Event;
-import joni.task.Task;
-import joni.task.Todo;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import joni.task.Deadline;
+import joni.task.Event;
+import joni.task.Task;
+import joni.task.Todo;
 
 /**
  * Handles loading and saving of tasks to a CSV file.
@@ -95,11 +99,15 @@ public class Storage {
             case "T":
                 return new Todo(description, isDone);
             case "D":
-                if (parts.length < 4) return null;
+                if (parts.length < 4) {
+                    return null;
+                }
                 LocalDate deadlineDate = LocalDate.parse(parts[3], DATE_FORMATTER);
                 return new Deadline(description, deadlineDate, isDone);
             case "E":
-                if (parts.length < 5) return null;
+                if (parts.length < 5) {
+                    return null;
+                }
                 LocalDate eventFrom = LocalDate.parse(parts[3], DATE_FORMATTER);
                 LocalDate eventTo = LocalDate.parse(parts[4], DATE_FORMATTER);
                 return new Event(description, eventFrom, eventTo, isDone);

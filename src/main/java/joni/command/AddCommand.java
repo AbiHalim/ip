@@ -1,13 +1,13 @@
 package joni.command;
 
-import joni.task.Deadline;
 import joni.JoniException;
 import joni.Storage;
+import joni.Ui;
+import joni.task.Deadline;
 import joni.task.Task;
 import joni.task.TaskList;
 import joni.task.TaskType;
 import joni.task.Todo;
-import joni.Ui;
 
 /**
  * Represents a user command to add a task to the to do list
@@ -16,6 +16,13 @@ public class AddCommand extends Command {
     private final String[] inputParts;
     private final TaskType type;
 
+
+    /**
+     * Constructs an AddCommand with the given input parts and task type.
+     *
+     * @param inputParts The array of input strings containing task details.
+     * @param type The type of task to be added.
+     */
     public AddCommand(String[] inputParts, TaskType type) {
         this.inputParts = inputParts;
         this.type = type;
@@ -41,7 +48,9 @@ public class AddCommand extends Command {
             break;
         case DEADLINE:
             String[] deadlineParts = inputParts[1].split(" /by ", 2);
-            if (deadlineParts.length < 2) throw new JoniException("Invalid deadline format.");
+            if (deadlineParts.length < 2) {
+                throw new JoniException("Invalid deadline format.");
+            }
             task = new Deadline(deadlineParts[0].trim(), deadlineParts[1].trim());
             break;
         default:

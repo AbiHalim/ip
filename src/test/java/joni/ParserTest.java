@@ -1,10 +1,20 @@
 package joni;
 
-import joni.command.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import joni.command.AddCommand;
+import joni.command.Command;
+import joni.command.DeleteCommand;
+import joni.command.ExitCommand;
+import joni.command.HelpCommand;
+import joni.command.ListCommand;
+import joni.command.MarkCommand;
+import joni.command.Parser;
+
 
 /**
  * Tests for the Parser class.

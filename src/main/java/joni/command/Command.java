@@ -1,8 +1,8 @@
 package joni.command;
 
 import joni.JoniException;
-import joni.task.TaskList;
 import joni.Ui;
+import joni.task.TaskList;
 
 /**
  * Abstract Command class that all commands inherit from.

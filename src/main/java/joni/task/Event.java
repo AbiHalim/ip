@@ -1,21 +1,19 @@
 package joni.task;
 
-import joni.JoniException;
-import joni.task.Task;
-import joni.task.TaskType;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import joni.JoniException;
 
 /**
  * Represents an event with a start and end date
  */
 public class Event extends Task {
-    protected LocalDate from;
-    protected LocalDate to;
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    protected LocalDate from;
+    protected LocalDate to;
 
     /**
      * Creates an Event task with a start and end date.
@@ -56,7 +54,8 @@ public class Event extends Task {
      */
     @Override
     public String toCsvFormat() {
-        return "E, " + (isDone ? "1" : "0") + ", " + description + ", " + from.format(INPUT_FORMATTER) + ", " + to.format(INPUT_FORMATTER);
+        return "E, " + (isDone ? "1" : "0") + ", " + description + ", "
+                + from.format(INPUT_FORMATTER) + ", " + to.format(INPUT_FORMATTER);
     }
 
     /**
@@ -66,6 +65,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E][" + getStatusIcon() + "] " + description + " (from: " + from.format(OUTPUT_FORMATTER) + " to: " + to.format(OUTPUT_FORMATTER) + ")";
+        return "[E][" + getStatusIcon() + "] " + description + " (from: "
+                + from.format(OUTPUT_FORMATTER) + " to: " + to.format(OUTPUT_FORMATTER) + ")";
     }
 }

@@ -2,9 +2,9 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
+import joni.Ui;
 import joni.task.Task;
 import joni.task.TaskList;
-import joni.Ui;
 
 /**
  * Handles marking or unmarking tasks.
@@ -13,6 +13,12 @@ public class MarkCommand extends Command {
     private final int taskIndex;
     private final boolean isMarkingDone;
 
+    /**
+     * Constructs a MarkCommand with the given input parts and task type.
+     *
+     * @param inputParts The array of input strings containing task details.
+     * @param isMarkingDone Whether marking is done or not
+     */
     public MarkCommand(String[] inputParts, boolean isMarkingDone) throws JoniException {
         if (inputParts.length < 2) {
             throw new JoniException("Invalid command! Use 'mark <task number>' or 'unmark <task number>'.");

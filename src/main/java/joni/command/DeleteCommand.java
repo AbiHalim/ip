@@ -2,9 +2,9 @@ package joni.command;
 
 import joni.JoniException;
 import joni.Storage;
+import joni.Ui;
 import joni.task.Task;
 import joni.task.TaskList;
-import joni.Ui;
 
 /**
  * Handles deleting tasks from the task list.
@@ -12,6 +12,11 @@ import joni.Ui;
 public class DeleteCommand extends Command {
     private final int taskIndex;
 
+    /**
+     * Constructs a DeleteCommand with the given input parts
+     *
+     * @param inputParts The array of input strings containing task details.
+     */
     public DeleteCommand(String[] inputParts) throws JoniException {
         if (inputParts.length < 2) {
             throw new JoniException("Invalid command! Use 'delete <task number>'.");
@@ -35,6 +40,7 @@ public class DeleteCommand extends Command {
         Task removedTask = tasks.removeTask(taskIndex);
         Storage.saveTasks(tasks.getTasks());
 
-        ui.printMessage("Noted. I've removed this task:\n   " + removedTask + "\nNow you have " + tasks.getTasks().size() + " tasks in the list.");
+        ui.printMessage("Noted. I've removed this task:\n   " + removedTask
+                + "\nNow you have " + tasks.getTasks().size() + " tasks in the list.");
     }
 }

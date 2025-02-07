@@ -1,15 +1,7 @@
 package joni.command;
 
-import joni.command.CommandType;
+
 import joni.JoniException;
-import joni.command.Command;
-import joni.command.AddCommand;
-import joni.command.ExitCommand;
-import joni.command.ListCommand;
-import joni.command.DeleteCommand;
-import joni.command.MarkCommand;
-import joni.command.HelpCommand;
-import joni.command.FindCommand;
 import joni.task.TaskType;
 
 /**

@@ -1,13 +1,16 @@
 package joni;
 
-import joni.command.Command;
-import joni.command.Parser;
-import joni.task.TaskList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import joni.command.Command;
+import joni.command.Parser;
+import joni.task.TaskList;
 
 /**
  * Tests for the Joni chatbot.

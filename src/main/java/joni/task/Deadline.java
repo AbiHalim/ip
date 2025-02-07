@@ -1,20 +1,18 @@
 package joni.task;
 
-import joni.JoniException;
-import joni.task.Task;
-import joni.task.TaskType;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import joni.JoniException;
 
 /**
  * Represents a task with a deadline
  */
 public class Deadline extends Task {
-    protected LocalDate by;
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    protected LocalDate by;
 
     /**
      * Creates a Deadline task with a due date.
