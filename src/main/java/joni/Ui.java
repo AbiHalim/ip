@@ -6,8 +6,8 @@ import java.util.Scanner;
  * Contains the user interface for the chatbot
  */
 public class Ui {
-    private final Scanner sc;
     private static final String DIVIDER = "____________________________________________________________";
+    private final Scanner sc;
 
     public Ui() {
         sc = new Scanner(System.in);
@@ -18,19 +18,19 @@ public class Ui {
      */
     public void showWelcome() {
         System.out.println(DIVIDER);
-        String logo = "    .---.    .-'''-.                    \n" +
-                "    |   |   '   _    \\                  \n" +
-                "    '---' /   /` '.   \\    _..._   .--. \n" +
-                "    .---..   |     \\  '  .'     '. |__| \n" +
-                "    |   ||   '      |  '.   .-.   ..--. \n" +
-                "    |   |\\    \\     / / |  '   '  ||  | \n" +
-                "    |   | `.   ` ..' /  |  |   |  ||  | \n" +
-                "    |   |    '-...-'`   |  |   |  ||  | \n" +
-                "    |   |               |  |   |  ||  | \n" +
-                "    |   |               |  |   |  ||__| \n" +
-                " __.'   '               |  |   |  |     \n" +
-                "|      '                |  |   |  |     \n" +
-                "|____.'                 '--'   '--'     \n";
+        String logo = "    .---.    .-'''-.                    \n"
+                + "    |   |   '   _    \\                  \n"
+                + "    '---' /   /` '.   \\    _..._   .--. \n"
+                + "    .---..   |     \\  '  .'     '. |__| \n"
+                + "    |   ||   '      |  '.   .-.   ..--. \n"
+                + "    |   |\\    \\     / / |  '   '  ||  | \n"
+                + "    |   | `.   ` ..' /  |  |   |  ||  | \n"
+                + "    |   |    '-...-'`   |  |   |  ||  | \n"
+                + "    |   |               |  |   |  ||  | \n"
+                + "    |   |               |  |   |  ||__| \n"
+                + " __.'   '               |  |   |  |     \n"
+                + "|      '                |  |   |  |     \n"
+                + "|____.'                 '--'   '--'     \n";
         System.out.println(logo);
         System.out.println(" Hello! My name is Joni");
         System.out.println(" And this is my promise: helping you!");

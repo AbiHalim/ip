@@ -1,10 +1,9 @@
 package joni.task;
 
+import java.util.ArrayList;
+
 import joni.JoniException;
 import joni.Ui;
-import joni.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Manages the task list and its operations.
