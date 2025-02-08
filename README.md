@@ -26,7 +26,7 @@ Joni allows you to record all the tasks, events, and deadlines you have, for exa
 8.  help - Displays this help message.
 9.  find <keyword> - Finds all tasks containing <keyword>  10. bye - Exits the chatbot.
 
-If you are interested in programming 🤓, here is how the above 'help' command is implemented:
+If you are interested in programming 🤓, here is how the above `help` command is implemented:
 ```bash
 package joni.command;
 
