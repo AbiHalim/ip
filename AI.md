@@ -9,3 +9,6 @@ This week, I kept using ChatGPT-4o to help with the project. One problem I had w
 
 ## Week 4:
 This week, I experimented between using ChatGPT and DeepSeek to evaluate which one is better. I gave both of them the same prompt, giving them the full context of the iP from the CS2103 website, along with the contents of all my Java files. I tried using both to work on the GUI, and they gave different answers. The DeepSeek response seemed to be more complete and resembled the tutorial more, so I went with the DeepSeek response initially. However, the code had some bugs, and I asked DeepSeek for help in debugging. However, I found that DeepSeek's servers were quite slow, and often it would fail to generate a response as the servers were busy. I ended up debugging the code manually based on what I learned from doing the GUI tutorial, and it worked.
+
+This is the ChatGPT chat I used for this week: https://chatgpt.com/share/67a82313-aca4-8009-be7e-5509e3f4c594
+Unfortunately, there is no functionality in DeepSeek to share chats via a link for now.
