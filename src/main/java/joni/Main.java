@@ -24,6 +24,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = loadFxml();
+            assert fxmlLoader != null : "FXML loader should not be null!";
             AnchorPane root = loadRoot(fxmlLoader);
             setupStage(stage, root);
             initializeController(fxmlLoader);
