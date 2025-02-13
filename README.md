@@ -31,7 +31,7 @@ If you are interested in programming 🤓, here is how the above `help` command 
 package joni.command;
 
 import joni.task.TaskList;
-import joni.Ui;
+
 
 /**
  * Displays available commands.
@@ -42,11 +42,11 @@ public class HelpCommand extends Command {
      * Displays a list of available commands.
      *
      * @param tasks The TaskList instance.
-     * @param ui The UI instance to display messages.
+     * @return The string representation of the command's response.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
-        String helpMessage = "Here are the available commands:\n"
+    public String execute(TaskList tasks) {
+        return "Here are the available commands:\n"
                 + " 1. list - Shows all tasks.\n"
                 + " 2. todo <description> - Adds a new todo task.\n"
                 + " 3. deadline <description> /by <date> - Adds a deadline task.\n"
@@ -57,7 +57,6 @@ public class HelpCommand extends Command {
                 + " 8. help - Displays this help message.\n"
                 + " 9. find <keyword> - Finds all tasks containing <keyword> "
                 + " 10. bye - Exits the chatbot.";
-        ui.printMessage(helpMessage);
     }
 }
 ```
