@@ -62,7 +62,7 @@ public abstract class Task {
      *
      * @return The CSV representation of the task.
      */
-    public abstract String toCsvFormat();
+    public abstract String convertToCsvFormat();
 
     /**
      * Returns a string representation of the task.

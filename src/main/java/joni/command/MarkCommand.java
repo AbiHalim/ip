@@ -42,10 +42,8 @@ public class MarkCommand extends Command {
         Task task = tasks.markTask(taskIndex, isMarkingDone);
         Storage.saveTasks(tasks.getTasks());
 
-        String message = isMarkingDone
+        return isMarkingDone
                 ? "Nice! I've marked this task as done:\n   " + task
                 : "OK, I've marked this task as not done yet:\n   " + task;
-
-        return message;
     }
 }
