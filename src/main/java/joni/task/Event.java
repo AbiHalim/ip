@@ -53,7 +53,7 @@ public class Event extends Task {
      * @return A string representation of the event in CSV format.
      */
     @Override
-    public String toCsvFormat() {
+    public String convertToCsvFormat() {
         return "E, " + (isDone ? "1" : "0") + ", " + description + ", "
                 + from.format(INPUT_FORMATTER) + ", " + to.format(INPUT_FORMATTER);
     }

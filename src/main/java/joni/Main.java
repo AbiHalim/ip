@@ -1,5 +1,7 @@
 package joni;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,16 +23,37 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
-            AnchorPane ap = fxmlLoader.load();
-            Scene scene = new Scene(ap);
-            stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setJoni(joni);
-            fxmlLoader.<MainWindow>getController().showWelcome();
-            stage.setTitle("Joni");
-            stage.show();
+            FXMLLoader fxmlLoader = loadFxml();
+            AnchorPane root = loadRoot(fxmlLoader);
+            setupStage(stage, root);
+            initializeController(fxmlLoader);
         } catch (Exception e) {
-            e.printStackTrace();
+            handleException(e);
         }
+    }
+
+    private FXMLLoader loadFxml() {
+        return new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+    }
+
+    private AnchorPane loadRoot(FXMLLoader fxmlLoader) throws IOException {
+        return fxmlLoader.load();
+    }
+
+    private void setupStage(Stage stage, AnchorPane root) {
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Joni");
+        stage.show();
+    }
+
+    private void initializeController(FXMLLoader fxmlLoader) {
+        MainWindow controller = fxmlLoader.getController();
+        controller.setJoni(joni);
+        controller.showWelcome();
+    }
+
+    private void handleException(Exception e) {
+        e.printStackTrace();
     }
 }
