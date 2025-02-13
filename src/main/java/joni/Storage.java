@@ -35,7 +35,7 @@ public class Storage {
      *
      * @param tasks The list of tasks to be saved.
      */
-    public void saveTasks(ArrayList<Task> tasks) {
+    public static void saveTasks(ArrayList<Task> tasks) {
         assert tasks != null : "Task list should not be null when saving!";
         ensureFileExists();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -73,7 +73,7 @@ public class Storage {
     /**
      * Ensures that the required file and directory exist.
      */
-    private void ensureFileExists() {
+    private static void ensureFileExists() {
         try {
             Path directoryPath = Paths.get(DIRECTORY);
             if (!Files.exists(directoryPath)) {
