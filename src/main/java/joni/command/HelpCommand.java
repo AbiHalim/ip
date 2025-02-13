@@ -16,7 +16,7 @@ public class HelpCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks) {
-        String helpMessage = "Here are the available commands:\n"
+        return "Here are the available commands:\n"
                 + " 1. list - Shows all tasks.\n"
                 + " 2. todo <description> - Adds a new todo task.\n"
                 + " 3. deadline <description> /by <date> - Adds a deadline task.\n"
@@ -27,6 +27,5 @@ public class HelpCommand extends Command {
                 + " 8. help - Displays this help message.\n"
                 + " 9. find <keyword> - Finds all tasks containing <keyword> "
                 + " 10. bye - Exits the chatbot.";
-        return helpMessage;
     }
 }
