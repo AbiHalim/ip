@@ -80,7 +80,7 @@ public class TaskList {
 
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append(" ").append(i + 1).append(". ").append(tasks.get(i)).append("\n");
+            sb.append(String.format(" %d. %s%n", i + 1, tasks.get(i)));
         }
         return sb.toString();
     }

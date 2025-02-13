@@ -30,7 +30,7 @@ public class Todo extends Task {
      * @return The CSV representation of the Todo task.
      */
     @Override
-    public String toCsvFormat() {
+    public String convertToCsvFormat() {
         return "T, " + (isDone ? "1" : "0") + ", " + description;
     }
 

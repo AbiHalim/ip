@@ -35,7 +35,6 @@ public class Joni {
      *
      * @param input The user input string to be processed.
      * @return A string representing Joni's response to the given input.
-     * @throws JoniException If there is an issue processing the input.
      */
     public String getResponse(String input) {
         try {

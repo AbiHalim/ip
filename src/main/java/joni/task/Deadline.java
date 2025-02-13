@@ -48,7 +48,7 @@ public class Deadline extends Task {
      * @return A string representation of the task in CSV format.
      */
     @Override
-    public String toCsvFormat() {
+    public String convertToCsvFormat() {
         return "D, " + (isDone ? "1" : "0") + ", " + description + ", " + by.format(INPUT_FORMATTER);
     }
 
