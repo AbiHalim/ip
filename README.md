@@ -24,7 +24,8 @@ Joni allows you to record all the tasks, events, and deadlines you have, for exa
 6.  unmark <task number> - Marks a task as not done.
 7.  delete <task number> - Removes a task.
 8.  help - Displays this help message.
-9.  find <keyword> - Finds all tasks containing <keyword>  10. bye - Exits the chatbot.
+9.  find <keyword> - Finds all tasks containing <keyword>.
+10. undo - Undos the addition or removal of tasks.
 
 If you are interested in programming 🤓, here is how the above `help` command is implemented:
 ```bash
@@ -55,8 +56,8 @@ public class HelpCommand extends Command {
                 + " 6. unmark <task number> - Marks a task as not done.\n"
                 + " 7. delete <task number> - Removes a task.\n"
                 + " 8. help - Displays this help message.\n"
-                + " 9. find <keyword> - Finds all tasks containing <keyword> "
-                + " 10. bye - Exits the chatbot.";
+                + " 9. find <keyword> - Finds all tasks containing <keyword>.\n"
+                + " 10. undo - Undos the addition or removal of tasks.";
     }
 }
 ```
