@@ -39,6 +39,8 @@ public class Parser {
             return new HelpCommand();
         case FIND:
             return new FindCommand(inputParts);
+        case UNDO:
+            return new UndoCommand(); // New Undo command
         case BYE:
             return new ExitCommand();
         default:

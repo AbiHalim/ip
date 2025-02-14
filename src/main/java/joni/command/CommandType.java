@@ -57,7 +57,12 @@ public enum CommandType {
     /**
      * Searches for tasks that contain a given keyword.
      */
-    FIND;
+    FIND,
+
+    /**
+     * Undos the most recent command(s).
+     */
+    UNDO;
 
     /**
      * Converts a user input string into a corresponding CommandType.
@@ -78,6 +83,7 @@ public enum CommandType {
         case "event": return EVENT;
         case "delete": return DELETE;
         case "find": return FIND;
+        case "undo": return UNDO;
         default: return UNKNOWN;
         }
     }
