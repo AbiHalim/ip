@@ -1,6 +1,7 @@
 package joni.task;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import joni.JoniException;
 
@@ -8,13 +9,15 @@ import joni.JoniException;
  * Manages the task list and its operations.
  */
 public class TaskList {
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
+    private Stack<ArrayList<Task>> history;
 
     /**
      * Initializes an empty task list.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
+        this.history = new Stack<>();
     }
 
     /**
@@ -24,6 +27,7 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        this.history = new Stack<>();
     }
 
     /**
@@ -33,6 +37,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         assert task != null : "Task being added should not be null!";
+        saveState();
         tasks.add(task);
     }
 
@@ -47,6 +52,7 @@ public class TaskList {
         if (index < 0 || index >= tasks.size()) {
             throw new JoniException("Invalid task number! Use a valid index.");
         }
+        saveState();
         return tasks.remove(index);
     }
 
@@ -62,6 +68,7 @@ public class TaskList {
         if (index < 0 || index >= tasks.size()) {
             throw new JoniException("Invalid task number! Use a valid index.");
         }
+        saveState();
         if (done) {
             tasks.get(index).markAsDone();
         } else {
@@ -86,11 +93,36 @@ public class TaskList {
     }
 
     /**
+     * Undoes the most recent modification to the task list.
+     *
+     * @return A message indicating the undo result.
+     */
+    public String undo() {
+        if (tasks.isEmpty() && history.isEmpty()) {
+            return "Undo not possible! The task list is empty.";
+        }
+
+        if (history.isEmpty()) {
+            return "No previous actions to undo!";
+        }
+
+        tasks = history.pop();
+        return "Undo successful!";
+    }
+
+    /**
      * Returns the list of tasks.
      *
      * @return The ArrayList of Task objects.
      */
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    /**
+     * Saves the current state before making modifications.
+     */
+    private void saveState() {
+        history.push(new ArrayList<>(tasks)); // Deep copy of current state
     }
 }
