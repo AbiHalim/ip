@@ -70,7 +70,7 @@ public class AddCommand extends Command {
     private Task parseDeadline(String input) throws JoniException {
         String[] deadlineParts = input.split(" /by ", 2);
         if (deadlineParts.length < 2) {
-            throw new JoniException("Invalid deadline format. Use: deadline <description> /by <date>");
+            throw new JoniException("Invalid deadline format. Use: deadline <description> /by <yyyy-MM-dd>");
         }
         return new Deadline(deadlineParts[0].trim(), deadlineParts[1].trim());
     }
@@ -85,7 +85,8 @@ public class AddCommand extends Command {
     private Task parseEvent(String input) throws JoniException {
         String[] eventParts = input.split(" /from | /to ", 3);
         if (eventParts.length < 3) {
-            throw new JoniException("Invalid event format. Use: event <description> /from <start date> /to <end date>");
+            throw new JoniException("Invalid event format. Use: event <description> "
+                    + "/from <yyyy-MM-dd> /to <yyyy-MM-dd>");
         }
         return new Event(eventParts[0].trim(), eventParts[1].trim(), eventParts[2].trim());
     }

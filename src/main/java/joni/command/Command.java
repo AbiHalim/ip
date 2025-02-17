@@ -17,13 +17,5 @@ public abstract class Command {
      */
     public abstract String execute(TaskList tasks) throws JoniException;
 
-    /**
-     * Determines if the command is an exit command.
-     *
-     * @return True if the command is an exit command, false otherwise.
-     */
-    public boolean isExit() {
-        return false;
-    }
 }
 

@@ -5,11 +5,6 @@ package joni.command;
  */
 public enum CommandType {
     /**
-     * Exits the chatbot.
-     */
-    BYE,
-
-    /**
      * Lists all tasks stored in the chatbot.
      */
     LIST,
@@ -73,8 +68,6 @@ public enum CommandType {
     public static CommandType fromString(String command) {
         switch (command.toLowerCase()) {
         case "help": return HELP;
-        case "bye": return BYE;
-        case "exit": return BYE;
         case "list": return LIST;
         case "mark": return MARK;
         case "unmark": return UNMARK;

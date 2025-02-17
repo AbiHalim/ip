@@ -1,4 +1,4 @@
-package joni;
+package joni.gui;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import joni.Joni;
 
 /**
  * Main driver class for the GUI application
