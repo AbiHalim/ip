@@ -40,9 +40,7 @@ public class Parser {
         case FIND:
             return new FindCommand(inputParts);
         case UNDO:
-            return new UndoCommand(); // New Undo command
-        case BYE:
-            return new ExitCommand();
+            return new UndoCommand();
         default:
             throw new JoniException("Oops! I don't understand that command.");
         }

@@ -3,18 +3,18 @@ package joni.command;
 import joni.JoniException;
 import joni.Storage;
 import joni.task.Deadline;
+import joni.task.Event;
 import joni.task.Task;
 import joni.task.TaskList;
 import joni.task.TaskType;
 import joni.task.Todo;
 
 /**
- * Represents a user command to add a task to the to do list
+ * Represents a user command to add a task to the to-do list.
  */
 public class AddCommand extends Command {
     private final String[] inputParts;
     private final TaskType type;
-
 
     /**
      * Constructs an AddCommand with the given input parts and task type.
@@ -46,11 +46,10 @@ public class AddCommand extends Command {
             task = new Todo(inputParts[1].trim());
             break;
         case DEADLINE:
-            String[] deadlineParts = inputParts[1].split(" /by ", 2);
-            if (deadlineParts.length < 2) {
-                throw new JoniException("Invalid deadline format.");
-            }
-            task = new Deadline(deadlineParts[0].trim(), deadlineParts[1].trim());
+            task = parseDeadline(inputParts[1]);
+            break;
+        case EVENT:
+            task = parseEvent(inputParts[1]);
             break;
         default:
             throw new JoniException("Invalid task type.");
@@ -59,5 +58,36 @@ public class AddCommand extends Command {
         tasks.addTask(task);
         Storage.saveTasks(tasks.getTasks());
         return "Got it! Task added:\n   " + task;
+    }
+
+    /**
+     * Parses a deadline task from user input.
+     *
+     * @param input The user input string.
+     * @return A Deadline task.
+     * @throws JoniException If the format is incorrect.
+     */
+    private Task parseDeadline(String input) throws JoniException {
+        String[] deadlineParts = input.split(" /by ", 2);
+        if (deadlineParts.length < 2) {
+            throw new JoniException("Invalid deadline format. Use: deadline <description> /by <yyyy-MM-dd>");
+        }
+        return new Deadline(deadlineParts[0].trim(), deadlineParts[1].trim());
+    }
+
+    /**
+     * Parses an event task from user input.
+     *
+     * @param input The user input string.
+     * @return An Event task.
+     * @throws JoniException If the format is incorrect.
+     */
+    private Task parseEvent(String input) throws JoniException {
+        String[] eventParts = input.split(" /from | /to ", 3);
+        if (eventParts.length < 3) {
+            throw new JoniException("Invalid event format. Use: event <description> "
+                    + "/from <yyyy-MM-dd> /to <yyyy-MM-dd>");
+        }
+        return new Event(eventParts[0].trim(), eventParts[1].trim(), eventParts[2].trim());
     }
 }
