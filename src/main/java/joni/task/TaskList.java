@@ -6,7 +6,7 @@ import java.util.Stack;
 import joni.JoniException;
 
 /**
- * Manages the task list and its operations.
+ * Manages the task list and its operations, including undo functionality.
  */
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -69,12 +69,9 @@ public class TaskList {
             throw new JoniException("Invalid task number! Use a valid index.");
         }
         saveState();
-        if (done) {
-            tasks.get(index).markAsDone();
-        } else {
-            tasks.get(index).markAsNotDone();
-        }
-        return tasks.get(index);
+        Task task = tasks.get(index);
+        task.isDone = done;
+        return task;
     }
 
     /**
@@ -98,10 +95,6 @@ public class TaskList {
      * @return A message indicating the undo result.
      */
     public String undo() {
-        if (tasks.isEmpty() && history.isEmpty()) {
-            return "Undo not possible! The task list is empty.";
-        }
-
         if (history.isEmpty()) {
             return "No previous actions to undo!";
         }
@@ -123,6 +116,29 @@ public class TaskList {
      * Saves the current state before making modifications.
      */
     private void saveState() {
-        history.push(new ArrayList<>(tasks)); // Deep copy of current state
+        ArrayList<Task> taskCopy = new ArrayList<>();
+        for (Task task : tasks) {
+            taskCopy.add(cloneTask(task));
+        }
+        history.push(taskCopy);
+    }
+
+    /**
+     * Creates a deep copy of a Task.
+     *
+     * @param task The task to copy.
+     * @return A new instance of the task with the same properties.
+     */
+    private Task cloneTask(Task task) {
+        switch (task.taskType) {
+        case TODO:
+            return new Todo(task.description, task.isDone);
+        case DEADLINE:
+            return new Deadline(task.description, ((Deadline) task).by, task.isDone);
+        case EVENT:
+            return new Event(task.description, ((Event) task).from, ((Event) task).to, task.isDone);
+        default:
+            throw new IllegalArgumentException("Unknown task type");
+        }
     }
 }
