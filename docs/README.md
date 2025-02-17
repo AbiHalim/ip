@@ -11,9 +11,9 @@ Joni takes on the persona of a helpful and kind companion, inspired by the chara
 
 ## What's Joni?
 Joni allows you to record all the tasks, events, and deadlines you have, for example:
-- [x] Finish CS2103 iP PR review
+- [x] Finish CS2103 iP (by:Feb 21 2025)
 - [ ] Get dinner at Supper Stretch
-- [ ] Buy laundry detergent
+- [ ] Bali trip (from: Feb 21 2025 to:Feb 25 2025)
 
 ## Features:
 1. list - Shows all tasks.
