@@ -18,8 +18,8 @@ Joni allows you to record all the tasks, events, and deadlines you have, for exa
 ## Features:
 1. list - Shows all tasks.
 2.  todo <description> - Adds a new todo task.
-3.  deadline <description> /by <date> - Adds a deadline task.
-4.  event <description> /from <date> /to <date> - Adds an event.
+3.  deadline <description> /by <yyyy-MM-dd> - Adds a deadline task.
+4.  event <description> /from <yyyy-MM-dd> /to <yyyy-MM-dd> - Adds an event.
 5.  mark <task number> - Marks a task as completed.
 6.  unmark <task number> - Marks a task as not done.
 7.  delete <task number> - Removes a task.
@@ -50,8 +50,8 @@ public class HelpCommand extends Command {
         return "Here are the available commands:\n"
                 + " 1. list - Shows all tasks.\n"
                 + " 2. todo <description> - Adds a new todo task.\n"
-                + " 3. deadline <description> /by <date> - Adds a deadline task.\n"
-                + " 4. event <description> /from <date> /to <date> - Adds an event.\n"
+                + " 3. deadline <description> /by <yyyy-MM-dd> - Adds a deadline task.\n"
+                + " 4. event <description> /from <yyyy-MM-dd> /to <yyyy-MM-dd> - Adds an event.\n"
                 + " 5. mark <task number> - Marks a task as completed.\n"
                 + " 6. unmark <task number> - Marks a task as not done.\n"
                 + " 7. delete <task number> - Removes a task.\n"
