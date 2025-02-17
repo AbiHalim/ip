@@ -25,7 +25,7 @@ public class Joni {
      * @return A string containing the welcome message.
      */
     public String getWelcomeMessage() {
-        return "Hello! My name is Joni\n And this is my promise: helping you!\n"
+        return "Hello! My name is Joni\nAnd this is my promise: helping you!\n"
                 + "Type \"help\" for a list of commands.";
     }
 
