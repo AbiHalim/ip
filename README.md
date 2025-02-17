@@ -61,3 +61,5 @@ public class HelpCommand extends Command {
     }
 }
 ```
+
+>**Acknowledgement**: I utilized ChatGPT and DeepSeek to assist in implementing several features in this project, for more information refer to the AI.md file. The personality of Joni, as well as the profile pictures for Joni and the user, are inspired and adapted from the characters Joni and Angelique from the 2005 Indonesian film Janji Joni.  

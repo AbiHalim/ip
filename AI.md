@@ -17,3 +17,4 @@ Unfortunately, there is no functionality in DeepSeek to share chats via a link f
 This week, I tried using ChatGPT and Deepseek initially, but the Deepseek servers were very inconsistent, so I ended up using ChatGPT. Initially, I tried asking both to implement extension C-Tags, but both failed, so I ended up implementing C-Undo which was easier. I noticed that some of the time, I could simply tell the models what to do and copy-paste the code, but other times I would have to make minor edits myself to debug, or copy-paste only certain parts into my existing codebase. I think they still really helped in saving me a lot of time, both in implementation and in thinking.
 
 ## Week 6:
+This week, I continued using ChatGPT to assist me in debugging certain methods. I also used ChatGPT to help generate the profile pictures for Joni and the user, inspired by reference images taken from the film Janji Joni. 
